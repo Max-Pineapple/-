@@ -1319,3 +1319,139 @@ int main() {
     return 0;
 }
 */
+
+/*
+//冒泡排序
+void bubble_sort(int q[],int n)
+{
+    for(int i = 0;i < n - 1 ;i++)
+    {
+        for(int j = 0;j < n - i - 1;j++)
+        {
+            if(q[j] > q[j + 1])
+                swap(q[j],q[j + 1]);
+        }
+    }
+}
+int main(){
+    int n;
+    cin >> n;
+    int q[n];
+    for(int i = 0;i < n;i++)
+    {
+        cin >> q[i];
+    }
+    bubble_sort(q,n);
+    for(int i = 0;i < n;i++)
+        cout << q[i] << " ";
+    return 0;
+}
+*/
+
+/*
+//查找子串位置
+void getNext(int * next,string needle)
+{
+    next[0] = 0;
+    int j = 0;
+    for(int i = 1;i < needle.size();i++)
+    {
+        while(j > 0 && needle[i] != needle[j])//前后缀不相等的情况
+            j = next[j - 1];
+        if(needle[i] == needle[j])//前后缀相等的情况
+            j++;
+        next[i] = j;//更新next数组
+    }
+}
+int strStr(string haystack,string needle)
+{
+    if(needle.size() == 0)  return 0;
+    int next[needle.size()];
+    getNext(next,needle);
+    int j = 0;
+    for(int i = 0;i < haystack.size();i++)
+    {
+        while(haystack[i] != needle[j] && j > 0)
+            j = next[j - 1];
+        if(haystack[i] == needle[j])
+            j++;
+        if(j == needle.size())
+            return i - j + 1;
+    }
+    return -1;
+}
+int main()
+{
+    string haystack,needle;
+    cin >> haystack >> needle;
+    cout << strStr(haystack,needle) << endl;
+    return 0;
+}
+*/
+
+/*
+int main()   //辗转相除法求最大公约数
+{
+   int m, n, a, b, t, c;
+   printf("Input two integer numbers:\n");
+   scanf("%d%d", &a, &b);
+   m=a;
+   n=b;
+   while(b!=0)  //余数不为0，继续相除，直到余数为0
+    {
+       c=a%b;
+       a=b;
+       b=c;
+    }
+   printf("最大公约数:%d\n", a);
+   printf("最小公倍数:%d\n", m * n / a);
+}
+*/
+
+/*
+//历届试题 核桃的数量 --- 100 -- 2021-04-17
+int getMaxyue(int a,int b)
+{
+    int ans;
+    int m = a,n = b;
+    int c;
+    while(b)
+    {
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    return m * n / a;
+}
+int main()
+{
+    int a,b,c;
+    cin >> a >> b >> c;
+    int mid1,mid2,mid3;
+    mid1 = getMaxyue(a,b);
+    mid2 = getMaxyue(a,c);
+    mid3 = getMaxyue(b,c);
+    cout << max(mid1,max(mid2,mid3)) << endl;
+    return 0;
+}
+*/
+
+//历届试题 错误票据 --codeblocks跑不出  但是评测满分
+int main()
+{
+    int n,a[102],num;
+    cin >> n;
+    if(n <= 0)  return;
+    int i = 0;
+    while(cin >> a[i])  i++;
+    sort(a, a + i);
+    int ans1,ans2;
+    for(int j = 1;j < i;j++)
+    {
+        if(a[j] == a[j - 1])    ans2 = a[j];
+        if(a[j] == a[j - 1] + 2) ans1 = a[j - 1] + 1;
+
+    }
+    cout << ans1 << " " << ans2 << endl;
+    return 0;
+}
